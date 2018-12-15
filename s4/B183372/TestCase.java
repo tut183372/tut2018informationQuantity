@@ -1,4 +1,4 @@
-package s4.B183372; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID. 
+package s4.B183372; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
 import java.lang.*;
 import s4.specification.*;
 
@@ -24,8 +24,8 @@ public interface InformationEstimatorInterface{
 // It returns Double.MAX_VALUE, when the true value is infinite, or space is not set.
 // The behavior is undefined, if the true value is finete but larger than Double.MAX_VALUE.
 // Note that this happens only when the space is unreasonably large. We will encounter other problem anyway.
-// Otherwise, estimation of information quantity, 
-}                        
+// Otherwise, estimation of information quantity,
+}
 */
 
 
@@ -33,15 +33,18 @@ public class TestCase {
     public static void main(String[] args) {
 	try {
 	    FrequencerInterface  myObject;
-	    int freq;
+	    int freq,subfreq;
 	    System.out.println("checking s4.B183372.Frequencer");
-	    myObject = new s4.B183372.Frequencer();
+      myObject = new s4.B183372.Frequencer();
 	    myObject.setSpace("Hi Ho Hi Ho".getBytes());
 	    myObject.setTarget("H".getBytes());
 	    freq = myObject.frequency();
 	    System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
 	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
-	}
+      subfreq = myObject.subByteFrequency(0,3);
+      System.out.println("start:0 end:3 \"H\" in \"Ho H\" appears "+subfreq+" times. ");
+      if(2 == subfreq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+    }
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
 	}
@@ -50,7 +53,7 @@ public class TestCase {
 	    InformationEstimatorInterface myObject;
 	    double value;
 	    System.out.println("checking s4.B183372.InformationEstimator");
-	    myObject = new s4.B183372.InformationEstimator();
+      myObject = new s4.B183372.InformationEstimator();
 	    myObject.setSpace("3210321001230123".getBytes());
 	    myObject.setTarget("0".getBytes());
 	    value = myObject.estimation();
@@ -70,5 +73,4 @@ public class TestCase {
 	}
 
     }
-}	    
-	    
+}

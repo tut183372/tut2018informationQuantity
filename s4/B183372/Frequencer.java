@@ -1,4 +1,4 @@
-package s4.B183372; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID. 
+package s4.B183372; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
 import java.lang.*;
 import s4.specification.*;
 
@@ -36,14 +36,24 @@ public class Frequencer implements FrequencerInterface{
     }
 
     // I know that here is a potential problem in the declaration.
-    public int subByteFrequency(int start, int length) { 
+    public int subByteFrequency(int start, int end) {
 	// Not yet, but it is not currently used by anyone.
-	return -1;
+  int targetLength = myTarget.length;
+	int spaceLength = end - start + 1;
+	int count = 0;
+	for(int x = start; x<spaceLength; x++) {
+	    boolean abort = false;
+	    for(int i = 0; i<targetLength; i++) {
+		if(myTarget[i] != mySpace[x+i]) { abort = true; break; }
+	    }
+	    if(abort == false) { count++; }
+	}
+	return count;
     }
 
     public static void main(String[] args) {
 	Frequencer myObject;
-	int freq;
+	int freq,freq2;
 	try {
 	    System.out.println("checking my Frequencer");
 	    myObject = new Frequencer();
@@ -52,10 +62,11 @@ public class Frequencer implements FrequencerInterface{
 	    freq = myObject.frequency();
 	    System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
 	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+      freq2 = myObject.subByteFrequency(2,5);
+      System.out.print("start:2 length:5 \"H\" in \"Ho Hi\" appears "+freq2+" times. ");
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
 	}
     }
-}	    
-	    
+}
