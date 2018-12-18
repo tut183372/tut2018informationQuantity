@@ -35,19 +35,46 @@ public class TestCase {
 	    FrequencerInterface  myObject;
 	    int freq,subfreq;
 	    System.out.println("checking s4.B183372.Frequencer");
+        System.out.println("BLACK TEST");
       myObject = new s4.B183372.Frequencer();
 	    myObject.setSpace("Hi Ho Hi Ho".getBytes());
 	    myObject.setTarget("H".getBytes());
 	    freq = myObject.frequency();
 	    System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
 	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
-      subfreq = myObject.subByteFrequency(0,3);
-      System.out.println("start:0 end:3 \"H\" in \"Ho H\" appears "+subfreq+" times. ");
-      if(2 == subfreq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+        subfreq = myObject.subByteFrequency(0,3);   //subByteFrequency's Test added.
+        System.out.println("start:0 end:3 \"H\" in \"Ho H\" appears "+subfreq+" times. ");
+        if(2 == subfreq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
     }
 	catch(Exception e) {
-	    System.out.println("Exception occurred: STOP");
+	    System.out.println("Exception occurred: STOP(BLACK TEST)");
 	}
+        
+    try {
+        FrequencerInterface  myObject;
+        int freq,subfreq;
+        myObject = new s4.B183372.Frequencer();
+        System.out.println("WHITE TEST");
+        myObject.setSpace("Hi Ho Hi Ho".getBytes());
+        freq = myObject.frequency();
+        System.out.print("It returns -1 when TARGET is not set or TARGET's length is zero.");
+        if(-1 == freq) { System.out.println("OK"); } else {System.out.println("WRONG");}
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP(TARGET is not set or TARGET's length is zero.)");
+    }
+        try{
+        FrequencerInterface  myObject2;
+        int freq;
+        myObject2 = new s4.B183372.Frequencer();
+        myObject2.setTarget("H".getBytes());
+        freq = myObject2.frequency();
+        System.out.print("It returns 0 when SPACE is not set or SPACE's length is zero. ");
+        if(0 == freq) { System.out.println("OK"); } else {System.out.println("WRONG");}
+    }
+    catch(Exception e){
+        System.out.println("Exception occupied: STOP(SPACE is not set or SPACE's length is zero.)");
+    }
 
 	try {
 	    InformationEstimatorInterface myObject;

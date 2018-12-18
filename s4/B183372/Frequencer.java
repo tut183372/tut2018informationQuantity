@@ -25,6 +25,9 @@ public class Frequencer implements FrequencerInterface{
 	int targetLength = myTarget.length;
 	int spaceLength = mySpace.length;
 	int count = 0;
+    
+        //Target,Spaceがsetされてない場合の処理が必要
+        
 	for(int start = 0; start<spaceLength; start++) { // Is it OK?
 	    boolean abort = false;
 	    for(int i = 0; i<targetLength; i++) {
@@ -35,20 +38,12 @@ public class Frequencer implements FrequencerInterface{
 	return count;
     }
 
+    //　内容なし
+    // 引数間違い
     // I know that here is a potential problem in the declaration.
-    public int subByteFrequency(int start, int end) {
-	// Not yet, but it is not currently used by anyone.
-  int targetLength = myTarget.length;
-	int spaceLength = end - start + 1;
-	int count = 0;
-	for(int x = start; x<spaceLength; x++) {
-	    boolean abort = false;
-	    for(int i = 0; i<targetLength; i++) {
-		if(myTarget[i] != mySpace[x+i]) { abort = true; break; }
-	    }
-	    if(abort == false) { count++; }
-	}
-	return count;
+    public int subByteFrequency(int start, int length) {
+        // Not yet, but it is not currently used by anyone.
+        return -1;
     }
 
     public static void main(String[] args) {
