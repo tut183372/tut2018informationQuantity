@@ -35,7 +35,6 @@ public class TestCase {
 	    FrequencerInterface  myObject;
 	    int freq,subfreq;
 	    System.out.println("checking s4.B183372.Frequencer");
-        System.out.println("BLACK TEST");
       myObject = new s4.B183372.Frequencer();
 	    myObject.setSpace("Hi Ho Hi Ho".getBytes());
 	    myObject.setTarget("H".getBytes());
@@ -47,33 +46,60 @@ public class TestCase {
         if(2 == subfreq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
     }
 	catch(Exception e) {
-	    System.out.println("Exception occurred: STOP(BLACK TEST)");
+	    System.out.println("Exception occurred: STOP(BLACK BOX TEST)");
 	}
         
     try {
         FrequencerInterface  myObject;
         int freq,subfreq;
         myObject = new s4.B183372.Frequencer();
-        System.out.println("WHITE TEST");
         myObject.setSpace("Hi Ho Hi Ho".getBytes());
         freq = myObject.frequency();
-        System.out.print("It returns -1 when TARGET is not set or TARGET's length is zero.");
+        System.out.print("It returns -1 when TARGET is not set.");
         if(-1 == freq) { System.out.println("OK"); } else {System.out.println("WRONG");}
     }
     catch(Exception e) {
-        System.out.println("Exception occurred: STOP(TARGET is not set or TARGET's length is zero.)");
+        System.out.println("Exception occurred: STOP(TARGET is not set.)");
     }
-        try{
-        FrequencerInterface  myObject2;
+    try {
+        FrequencerInterface  myObject;
+        int freq,subfreq;
+        myObject = new s4.B183372.Frequencer();
+        myObject.setSpace("Hi Ho Hi Ho".getBytes());
+        myObject.setTarget("".getBytes());
+        freq = myObject.frequency();
+        System.out.print("It returns -1 when TARGET's length is zero.");
+        if(-1 == freq) { System.out.println("OK"); } else {System.out.println("WRONG");}
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP(TARGET's length is zero.)");
+    }
+        
+    try{
+        FrequencerInterface  myObject;
         int freq;
-        myObject2 = new s4.B183372.Frequencer();
-        myObject2.setTarget("H".getBytes());
-        freq = myObject2.frequency();
-        System.out.print("It returns 0 when SPACE is not set or SPACE's length is zero. ");
+        myObject = new s4.B183372.Frequencer();
+        myObject.setTarget("H".getBytes());
+        freq = myObject.frequency();
+        System.out.print("It returns 0 when SPACE is not set");
         if(0 == freq) { System.out.println("OK"); } else {System.out.println("WRONG");}
     }
     catch(Exception e){
-        System.out.println("Exception occupied: STOP(SPACE is not set or SPACE's length is zero.)");
+        System.out.println("Exception occupied: STOP(SPACE is not set.)");
+    }
+        
+    try{
+        FrequencerInterface  myObject;
+        int freq;
+        myObject = new s4.B183372.Frequencer();
+        myObject.setSpace("".getBytes());
+        myObject.setTarget("H".getBytes());
+        freq = myObject.frequency();
+        System.out.print("It returns 0 when SPACE's length is zero. ");
+        if(0 == freq) { System.out.println("OK"); } else {System.out.println("WRONG");}
+    }
+    catch(Exception e){
+        System.out.println("Exception occupied: STOP(SPACE's length is zero.)");
     }
 
 	try {
@@ -96,8 +122,63 @@ public class TestCase {
 	    System.out.println(">00 "+value);
 	}
 	catch(Exception e) {
-	    System.out.println("Exception occurred: STOP");
+	    System.out.println("Exception occurred: STOP(BLACK BOX TEST)");
 	}
+        
+    try {
+        InformationEstimatorInterface myObject;
+        double value;
+        myObject = new s4.B183372.InformationEstimator();
+        myObject.setSpace("3210321001230123".getBytes());
+        value = myObject.estimation(); //It returns 0.0 when the TARGET is not set.
+        System.out.println("It returns 0.0 when the TARGET is not set.");
+        if(0.0 == value) { System.out.println("OK"); } else {System.out.println("WRONG");}
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP(TARGET is not set.)");
+    }
+        
+    try {
+        InformationEstimatorInterface myObject;
+        double value;
+        myObject = new s4.B183372.InformationEstimator();
+        myObject.setSpace("3210321001230123".getBytes());
+        myObject.setTarget("".getBytes());
+        value = myObject.estimation(); //It returns 0.0 when the TARGET's length is zero.
+        System.out.println("It returns 0.0 when the TARGET's length is zero.");
+        if(0.0 == value) { System.out.println("OK"); } else {System.out.println("WRONG");}
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP(TARGET's length is zero.)");
+    }
+        
 
+    try {
+        InformationEstimatorInterface myObject;
+        double value;
+        myObject = new s4.B183372.InformationEstimator();
+	    myObject.setTarget("0".getBytes());
+        value = myObject.estimation(); //It returns Double.MAX_VALUE when the true value is infinite, or SPACE is not set.
+        System.out.println("It returns Double.MAX_VALUE when SPACE is not set.");
+        if(Double.MAX_VALUE == value) { System.out.println("OK"); } else {System.out.println("WRONG");}
+    }
+    catch(Exception e){
+        System.out.println("Exception occurred: STOP(SPACE is not set.)");
+    }
+        
+    try {
+        InformationEstimatorInterface myObject;
+        double value;
+        myObject = new s4.B183372.InformationEstimator();
+        myObject.setSpace("3210321001230123".getBytes());
+        myObject.setTarget("4".getBytes());
+        value = myObject.estimation(); //It returns Double.MAX_VALUE when the true value is infinite, or SPACE is not set.
+        System.out.println("It returns Double.MAX_VALUE when the true value is infinite.");
+        if(Double.MAX_VALUE == value) { System.out.println("OK"); } else {System.out.println("WRONG");}
+    }
+    catch(Exception e){
+        System.out.println("Exception occurred: STOP(the true value is infinite.)");
+    }
+        
     }
 }
