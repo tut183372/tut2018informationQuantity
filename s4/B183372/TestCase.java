@@ -42,13 +42,13 @@ public class TestCase {
 	    System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
 	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
         subfreq = myObject.subByteFrequency(0,3);   //subByteFrequency's Test added.
-        System.out.println("start:0 end:3 \"H\" in \"Ho H\" appears "+subfreq+" times. ");
+        System.out.println("start:0 end:3 \"H\" in \"Hi H\" appears "+subfreq+" times. ");
         if(2 == subfreq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
     }
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP(BLACK BOX TEST)");
 	}
-        
+
     try {
         FrequencerInterface  myObject;
         int freq,subfreq;
@@ -74,7 +74,7 @@ public class TestCase {
     catch(Exception e) {
         System.out.println("Exception occurred: STOP(TARGET's length is zero.)");
     }
-        
+
     try{
         FrequencerInterface  myObject;
         int freq;
@@ -87,7 +87,7 @@ public class TestCase {
     catch(Exception e){
         System.out.println("Exception occupied: STOP(SPACE is not set.)");
     }
-        
+
     try{
         FrequencerInterface  myObject;
         int freq;
@@ -124,7 +124,7 @@ public class TestCase {
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP(BLACK BOX TEST)");
 	}
-        
+
     try {
         InformationEstimatorInterface myObject;
         double value;
@@ -137,7 +137,7 @@ public class TestCase {
     catch(Exception e) {
         System.out.println("Exception occurred: STOP(TARGET is not set.)");
     }
-        
+
     try {
         InformationEstimatorInterface myObject;
         double value;
@@ -151,7 +151,7 @@ public class TestCase {
     catch(Exception e) {
         System.out.println("Exception occurred: STOP(TARGET's length is zero.)");
     }
-        
+
 
     try {
         InformationEstimatorInterface myObject;
@@ -165,7 +165,7 @@ public class TestCase {
     catch(Exception e){
         System.out.println("Exception occurred: STOP(SPACE is not set.)");
     }
-        
+
     try {
         InformationEstimatorInterface myObject;
         double value;
@@ -179,6 +179,6 @@ public class TestCase {
     catch(Exception e){
         System.out.println("Exception occurred: STOP(the true value is infinite.)");
     }
-        
+
     }
 }
