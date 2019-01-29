@@ -1,6 +1,6 @@
-//package s4.B183372; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
+package s4.B183372; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
 import java.lang.*;
-//import s4.specification.*;
+import s4.specification.*;
 
 /*
 interface FrequencerInterface {     // This interface provides the design for frequency counter.
@@ -15,8 +15,8 @@ interface FrequencerInterface {     // This interface provides the design for fr
 */
 
 
-public class Frequencer{
-//public class Frequencer implements FrequencerInterface{
+//public class Frequencer{
+public class Frequencer implements FrequencerInterface{
     // Code to start with: This code is not working, but good start point to work.
     byte [] myTarget;
     byte [] mySpace;
@@ -118,6 +118,8 @@ public class Frequencer{
 	//
 	// ****  Please write code here... ***
 	//
+        
+        /*
 	if (mySpace[i] > myTarget[j]) {
 		return 1;
 	} else if (mySpace[i] < myTarget[j]) {
@@ -132,8 +134,19 @@ public class Frequencer{
 		} else if (j == end - 1){
 			return 0;
 			}
-		return targetCompare(i + 1, j + 1, end);
-	}
+        return targetCompare(i + 1, j + 1, end);
+    
+        */
+        
+         for(int k=j; k<end; k++){
+           if(myTarget[k]!=mySpace[i+k-j]){
+                if(myTarget[k]<mySpace[i+k-j]) return 1;
+                else return -1;
+           }
+         }
+         return 0;
+         
+    
     }
 
     private int subByteStartIndex(int start, int end) {
