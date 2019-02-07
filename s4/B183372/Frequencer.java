@@ -1,6 +1,6 @@
-package s4.B183372; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
+//package s4.B183372; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
 import java.lang.*;
-import s4.specification.*;
+//import s4.specification.*;
 
 /*
 interface FrequencerInterface {     // This interface provides the design for frequency counter.
@@ -15,8 +15,8 @@ interface FrequencerInterface {     // This interface provides the design for fr
 */
 
 
-//public class Frequencer{
-public class Frequencer implements FrequencerInterface{
+public class Frequencer{
+//public class Frequencer implements FrequencerInterface{
     // Code to start with: This code is not working, but good start point to work.
     byte [] myTarget;
     byte [] mySpace;
@@ -200,6 +200,30 @@ public class Frequencer implements FrequencerInterface{
     return binary_search(start,end,0,suffixArray.length-1,0);
     }
 
+    private int subByteEndIndex(int start, int end) {
+      // It returns the next index of the first suffix which is greater than subBytes;
+      // not implemented yet
+      // For "Ho", it will return 7  for "Hi Ho Hi Ho".
+      // For "Ho ", it will return 7 for "Hi Ho Hi Ho".
+      //
+      // ****  Please write code here... ***
+
+      /*
+      for(int i = subByteStartIndex(start,end);i < mySpace.length ;i++){
+
+        if(targetCompare(suffixArray[i],start,end) != 0){
+          return i;
+        }
+      }
+
+
+      return suffixArray.length;
+      */
+
+      return binary_search(start,end,subByteStartIndex(start,end),suffixArray.length-1,1);
+    }
+
+
     private int binary_search(int start_sub,int end_sub,int start_suff,int end_suff,int target){
       //subByteの始点終点
       //suffixArrayの始点終点
@@ -249,21 +273,6 @@ public class Frequencer implements FrequencerInterface{
       }
     }
 
-    private int subByteEndIndex(int start, int end) {
-	// It returns the next index of the first suffix which is greater than subBytes;
-	// not implemented yet
-	// For "Ho", it will return 7  for "Hi Ho Hi Ho".
-	// For "Ho ", it will return 7 for "Hi Ho Hi Ho".
-	//
-	// ****  Please write code here... ***
-	for(int i = subByteStartIndex(start,end);i < mySpace.length ;i++){
-
-		if(targetCompare(suffixArray[i],start,end) != 0){
-			return i;
-        }
-    }
-	return suffixArray.length;
-    }
 
     public int subByteFrequency(int start, int end) {
 	/* This method be work as follows, but */
@@ -318,7 +327,7 @@ public class Frequencer implements FrequencerInterface{
 	       9:o
 	       A:o Hi Ho
 	    */
-	    frequencerObject.setTarget("0".getBytes());
+	    frequencerObject.setTarget("AA".getBytes());
 	    //
 	    // ****  Please write code to check subByteStartIndex, and subByteEndIndex
 		//
