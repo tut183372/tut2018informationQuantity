@@ -218,8 +218,8 @@ public class Frequencer implements FrequencerInterface{
 
 
       return suffixArray.length;
-      */
-
+      
+*/
       return binary_search(start,end,subByteStartIndex(start,end),suffixArray.length-1,1);
     }
 
@@ -254,6 +254,8 @@ public class Frequencer implements FrequencerInterface{
          return mid;
        }else if(comp_r == target){
          return mid-1;
+       }else if(mid >= target){
+           return suffixArray.length;
        }else{
         return suffixArray.length-1;
       }
@@ -312,7 +314,7 @@ public class Frequencer implements FrequencerInterface{
 	Frequencer frequencerObject;
 	try {
 	    frequencerObject = new Frequencer();
-	    	frequencerObject.setSpace("AABA".getBytes());
+	    	frequencerObject.setSpace("AAA".getBytes());
 	    frequencerObject.printSuffixArray(); // you may use this line for DEBUG
 	    /* Example from "Hi Ho Hi Ho"
 		   0: Hi Ho
