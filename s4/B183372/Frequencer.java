@@ -100,26 +100,6 @@ public class Frequencer implements FrequencerInterface{
         merge_sort(suffixArray);
     }
 
-    private void quick_sort(int[] d, int left, int right) {
-        if (left>=right) {
-            return;
-        }
-        int p = d[(left+right)/2];
-        int l = left, r = right, tmp;
-        while(l<=r) {
-            while(suffixCompare(d[l],p) == -1) { l++; }
-            while(suffixCompare(d[r],p) == 1) { r--; }
-            if (l<=r) {
-                tmp = d[l];
-                d[l] = d[r];
-                d[r] = tmp;
-                l++; r--;
-            }
-        }
-        quick_sort(d, left, r);  // ピボットより左側をクイックソート
-        quick_sort(d, l, right); // ピボットより右側をクイックソート
-    }
-    
     /*
      * マージ
      * 2つの配列a1[]とa2[]を併合してa[]を作ります。
@@ -137,7 +117,7 @@ public class Frequencer implements FrequencerInterface{
             }
         }
     }
-    
+
     /*
      * マージソート
      * 既にソート済みの2つの配列を併合して新しい配列を
@@ -234,6 +214,13 @@ public class Frequencer implements FrequencerInterface{
     return suffixArray.length-1;
 */
 
+    if(myTarget == null || myTarget.length == 0){
+      return 0;
+    }
+    if(mySpace == null || mySpace.length == 0){
+      return 0;
+    }
+
     return binary_search(start,end,0,suffixArray.length-1,0);
     }
 
@@ -255,8 +242,15 @@ public class Frequencer implements FrequencerInterface{
 
 
       return suffixArray.length;
-      
+
 */
+
+      if(myTarget == null || myTarget.length == 0){
+        return -1;
+      }
+      if(mySpace == null || mySpace.length == 0){
+        return 0;
+      }
       return binary_search(start,end,subByteStartIndex(start,end),suffixArray.length-1,1);
     }
 

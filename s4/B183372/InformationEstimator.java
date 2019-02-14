@@ -20,10 +20,10 @@ public class InformationEstimator implements InformationEstimatorInterface{
     byte [] myTarget; // data to compute its information quantity
     byte [] mySpace;  // Sample space to compute the probability
     FrequencerInterface myFrequencer;  // Object for counting frequency
-    
+
     //IQ保存用
-    double [][] IQ_save ;
-    
+    //double [][] IQ_save ;
+
 
     byte [] subBytes(byte [] x, int start, int end) {
 	// corresponding to substring of String for  byte[] ,
@@ -44,7 +44,7 @@ public class InformationEstimator implements InformationEstimatorInterface{
 	mySpace = space;
    myFrequencer.setSpace(space);
     }
-    
+    /*
     public void calc_IQ(){
         //IQ_save = new double [myTarget.length][myTarget.length+1];
         for (int i=0;i<myTarget.length;i++){
@@ -61,11 +61,11 @@ public class InformationEstimator implements InformationEstimatorInterface{
 	np = 1<<(myTarget.length-1);
 	// System.out.println("np="+np+" length="+myTarget.length);
 	double value = Double.MAX_VALUE; // value = mininimum of each "value1".
-        
+
     //calculate IQ
         //calc_IQ();
-        
-        
+
+
     IQ_save = new double [myTarget.length][myTarget.length+1];
 
 	for(int p=0; p<np; p++) { // There are 2^(n-1) kinds of partitions.
@@ -92,7 +92,7 @@ public class InformationEstimator implements InformationEstimatorInterface{
                 end++;
             }
              //System.out.print("("+start+","+end+")");
-            
+
             if(IQ_save[start][end]==0.0){
                 myFrequencer.setTarget(subBytes(myTarget, start, end));
                 IQ_save[start][end] = iq(myFrequencer.frequency());
@@ -106,6 +106,35 @@ public class InformationEstimator implements InformationEstimatorInterface{
 	    if(value1 < value) value = value1;
 	}
 	return value;
+}*/
+
+public double estimation(){
+
+  if (myTarget == null || myTarget.length == 0) return 0.0;
+  if (mySpace == null || mySpace.length == 0) return Double.MAX_VALUE;
+
+  myFrequencer.setTarget(myTarget);
+
+  double[] IQ_save = new double[myTarget.length+1];
+
+  for(int end=1;end<=myTarget.length;end++){
+    double value = Double.MAX_VALUE;
+
+    for(int start=end-1; start>=0; start--){
+      int freq = myFrequencer.subByteFrequency(start,end);
+      if(freq == 0){
+        if(start == end-1){
+          return Double.MAX_VALUE;
+        }
+        break;
+      }
+      double value1 = iq(freq)+IQ_save[start];
+      if(value>value1) value  = value1;
+    }
+    IQ_save[end] = value;
+  }
+
+  return IQ_save[myTarget.length];
 }
 
     public static void main(String[] args) {
